@@ -1,0 +1,47 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: build-workflow
+
+on:
+  push:
+    branches: ["master"]
+
+  pull_request:
+    branches: ["master"]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout Source2Roblox
+        uses: actions/checkout@v4
+        with:
+          path: Source2Roblox
+
+      - name: Checkout ValveKeyValue
+        uses: actions/checkout@v4
+        with:
+          repository: MaximumADHD/ValveKeyValue
+          path: ValveKeyValue
+
+      - name: Checkout Roblox-File-Format
+        uses: actions/checkout@v4
+        with:
+          repository: MaximumADHD/Roblox-File-Format
+          path: Roblox-File-Format
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1.3.1
+
+      - name: Setup VSTest
+        uses: darenm/Setup-VSTest@v1.2
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.2.0
+
+      - name: Restore NuGet packages
+        run: nuget restore Source2Roblox/Source2Roblox.sln
+
+      - name: Build RandomString4Net for Release
+        run: msbuild Source2Roblox/Source2Roblox.sln -property:Configuration=Release -property:platform="Any CPU"
