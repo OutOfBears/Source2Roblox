@@ -50,7 +50,7 @@ jobs:
         run: nuget restore Roblox-File-Format/RobloxFileFormat.sln
 
       - name: Build Source2Roblox for Release
-        run: msbuild Source2Roblox/Source2Roblox.sln -property:Configuration=Release -property:platform="x64"
+        run: msbuild Source2Roblox/Source2Roblox.sln -property:Configuration=Debug
 
       - name: Upload Source2Roblox artifacts
         uses: actions/upload-artifact@v2
