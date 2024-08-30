@@ -43,5 +43,8 @@ jobs:
       - name: Restore NuGet packages
         run: nuget restore Source2Roblox/Source2Roblox.sln
 
-      - name: Build RandomString4Net for Release
+      - name: Update NuGet packages
+        run: nuget update Source2Roblox/Source2Roblox.sln
+
+      - name: Build Source2Roblox for Release
         run: msbuild Source2Roblox/Source2Roblox.sln -property:Configuration=Release -property:platform="Any CPU"
