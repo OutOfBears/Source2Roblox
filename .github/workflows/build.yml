@@ -44,7 +44,7 @@ jobs:
         run: nuget restore Source2Roblox/Source2Roblox.sln
 
       - name: Restore ValveKeyValue NuGet packages
-        run: nuget restore ValveKeyValue/ValveKeyValue.sln
+        run: nuget restore ValveKeyValue/ValveKeyValue/ValveKeyValue.sln
 
       - name: Restore Roblox-File-Format NuGet packages
         run: nuget restore Roblox-File-Format/RobloxFileFormat.sln
